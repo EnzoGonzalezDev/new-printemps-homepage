@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <dd>
+        holas
+    </dd>
+    
+    
+    <script>
+        var dd = document.querySelectorAll("dd");
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.open("GET","https://cors.bridged.cc/https://printemps.com.ar/", true);
+        xhr.responseType = "document";
+
+        xhr.onload = function(){
+            if (xhr.readyState == 4 && xhr.status ==200){
+                var response = xhr.responseXML.getElementsByClassName(".google-title");
+                console.log(response)
+            }
+        };
+
+        xhr.onerror = function(){
+            console.error(xhr.status ,xhr.statusText);
+        };
+
+        xhr.send()
+    </script>
+</body>
+</html>

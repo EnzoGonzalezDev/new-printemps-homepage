@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <style>
+        .price {
+            background-color: #FFFFFF80;
+            color: #ff9124;
+            border-radius: 9px;
+            border-width: thick;
+            border-color: black;
+            text-align: center;
+            font-size: 25px;
+            font-family: 'Arial', Helvetica, Arial, Lucida, sans-serif;
+            border: 2px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+            font-weight: bold;
+        }
+
+        .btn {
+            background-color: #ff9124;
+            color: #ffffff;
+            border-radius: 9px;
+            text-align: center;
+            font-size: 21px;
+            font-family: 'Arial', Helvetica, Arial, Lucida, sans-serif;
+            border: 2px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <p class="price"><span id="price-simba"></span></p>
+
+        <input class="btn" type="button"
+            onclick="location.href='https://api.whatsapp.com/send?phone=543415455449&text=Hola!%20muy%20buenas.%20Quiero%20comprar%20una%20cama%20Simba%20Chica%20(S).';"
+            value="Comprar Ahora" />
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+
+        const vue = new Vue({
+            el: '#app',
+            data: {
+                listaDatos: []
+            },
+            created() {
+                this.getLista()
+            },
+            methods: {
+                getLista() {
+                    idSheets = '1mpUXGaizAIWygvoOe0RqkQwqcU1MM5O_O7OL-GKO3EY';
+                    apiKey = 'AIzaSyAXxelTi1SpOkLRV7XwLRE788wogYT-TII';
+                    values = 'A1:Z1182';
+                    fetch("https://content-sheets.googleapis.com/v4/spreadsheets/" + idSheets + "/values/A1:Z1182?access_token=" + apiKey + "&key=" + apiKey)
+                        .then((lista) => {
+                            return lista.json()
+                        }).then((valores) => {
+                            this.listaDatos = valores.values;
+                            console.log(valores.values)
+                            var sku = ["CPPC001", "CPPG003", "CPPM002", "CPPSG004","CPM012075"]
+                            var laposta = [];
+                            console.log(valores.values[151][1])
+                            console.log(valores.values.length)
+                            for (let indice = 0; indice < sku.length; indice++) {
+                                console.log('producto ' +sku[indice]);
+                                for (let i = 0; i < valores.values.length; i++) {
+
+                                    //console.log(valores.values[i][1])
+                                    if (valores.values[i][1] == sku[indice]) {
+                                        console.log("Existe: " + valores.values[i][1]);
+                                        var nombre = document.createElement("p");
+                                        nombre.id = 'nom-p'+i;
+                                        nombre.textContent=valores.values[i][0];
+                                        nombre.classList.add('price')
+                                        document.body.appendChild(nombre)
+
+                                        var element = document.createElement("p");
+                                        element.id = 'cam-p'+i;
+                                        element.textContent = 'Precio: '+valores.values[i][2]; 
+                                        element.classList.add('price');
+                                        document.body.appendChild(element);
+
+  
+
+
+                                        document.getElementById('price-simba').textContent = valores.values[i][1];
+                                    }
+                                    else {
+                                        console.log('No existe')
+                                    }
+                                    
+                                };
+                            };
+                            
+                            
+                        }).catch(err => {
+                        })
+                }
+            }
+        }) 
+    </script>
+</body>
+
+</html>
