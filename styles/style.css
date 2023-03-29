@@ -28,6 +28,9 @@
     width: 36.5vw;
     position: relative;
     right: 105px;
+    height: 33.5px;
+    display: flex;
+    align-items: center;
 }
 
 .search-bar input{
@@ -59,6 +62,11 @@
   line-height: 15px;
   letter-spacing: 0.01rem;
   opacity: 1; /* Firefox */
+}
+
+.search-bar img{
+    width: 30px;
+    height: 30px;
 }
 
 .center-container{
