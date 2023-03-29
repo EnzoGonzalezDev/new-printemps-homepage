@@ -1,3 +1,4 @@
+
 * {
     margin: 0;
 }
@@ -5,7 +6,8 @@
 .contenedor{
     width: 100%;
     height: 680px;
-    background-image: url('../images/imagen inicio.png');
+    background-image: url('/new-printemps-homepage/images/imagen inicio.png');
+    /* background-color: aqua; */
     background-size:cover;
 }
 
@@ -22,10 +24,10 @@
 }
 
 .search-bar{
-    padding-top: 25px;
-    width: 36.5vw;
+    margin-top: 25px;
+    width: 40.5vw;
     position: relative;
-    right: 105px;
+    right: 85px;
     height: 33.5px;
     display: flex;
     align-items: center;
@@ -33,12 +35,11 @@
 
 .search-bar input{
     width: 100%;
-    padding: 5px 0 5px 16px;
+    padding: 0px 0px 0px 16px;
     border: 4px solid #29ad49;
     border-radius: 10px;
     background-color: transparent;
 }
-
 .search-bar input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: white;
   font-size: 15px;
@@ -64,8 +65,8 @@
 }
 
 .search-bar img{
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 60px;
 }
 
 .center-container{
@@ -85,6 +86,7 @@
     font-family: Arial, Helvetica, sans-serif;
     font-size: 2.8rem;
     color: white;
+    font-weight: 700;
 }
 
 .button-container{
@@ -110,6 +112,13 @@
     cursor:pointer;
 }
 
+.mini-contenedor a:hover{
+    text-decoration: none;
+    color:white;
+}
+.mini-contenedor a span{
+    font-size: 20px;
+}
 
 .mejores-section{
     margin: 10rem 0;
